@@ -8,15 +8,15 @@ cht::cht(unsigned long long universe, unsigned long long n, unsigned int sat, do
 	satWidth(sat)
 {
 
-	srand(time(NULL));
+	srand(time(NULL)); // std::random_device
 	valNotFound = M+10;
 	prime=nextPrimeNumber(cmax);
 	a = ULONG_MAX/prime;
 	emptyLoc= ceil(cmax/M)+1;
-	quotient_items = int_vector<0>(0);
-	quotient_items.width((unsigned int)log2(emptyLoc)+1+(satWidth));
+	
+	uint8_t w = bits::hi(emptyLoc) + 1 + satWidth;
+	quotient_items = int_vector<0>(M,0,w);
 
-	quotient_items.resize(M);
 	for(unsigned long long i=0; i<M; i++) 
 		quotient_items[i] = (emptyLoc<<satWidth);
 	
@@ -24,7 +24,7 @@ cht::cht(unsigned long long universe, unsigned long long n, unsigned int sat, do
 	C = bit_vector(M,1);
 	cout<<"u/n: "<<(double)universe/(double)n<<endl;
 	cout<<"prime/M: "<<(double)universe/(double)n<<endl;
-	cout<<"emptyLoc Symbol: "<<(unsigned int)log2(emptyLoc)+1<<" bits, emp: "<<emptyLoc <<endl;
+	cout<<"emptyLoc Symbol: "<< (w - satWidth) <<" bits, emp: "<<emptyLoc <<endl;
 }
 
 
