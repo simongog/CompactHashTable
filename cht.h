@@ -1,19 +1,17 @@
+#ifndef CHT
+#define CHT 
+
 #include "sdsl/int_vector.hpp"
 #include <iostream>
 #include "limits.h"
 
-using namespace sdsl;
-using namespace std;
-
-#ifndef CHT
-#define CHT 
 class cht {
 
 public:
 //structure
-int_vector<0> quotient_items;
-bit_vector V;
-bit_vector C;
+sdsl::int_vector<0> quotient_items;
+sdsl::bit_vector V;
+sdsl::bit_vector C;
 
 //init
 cht(){}
